@@ -23,6 +23,17 @@ Open `http://127.0.0.1:5000`.
 
 If `en_core_web_sm` is not installed, the app still runs with a small fallback pipeline. Installing the model gives better entity and part-of-speech results.
 
+## Render Deployment
+
+Use these settings for a Render web service:
+
+```text
+Build Command: pip install -r requirements.txt
+Start Command: gunicorn app:app
+```
+
+The start command belongs in Render's dashboard, not in `requirements.txt`.
+
 ## Project Structure
 
 ```text
