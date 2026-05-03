@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}POS Counts | {{ work.title }}{% endblock %}
+
+{% block content %}
+<section class="section">
+  <p class="eyebrow">{{ work.title }}</p>
+  <h1>Part-of-Speech Counts</h1>
+  <p class="lede">A compact look at grammatical categories found in the text.</p>
+
+  <table>
+    <thead>
+      <tr><th>Part of Speech</th><th>Count</th></tr>
+    </thead>
+    <tbody>
+      {% for label, count in counts %}
+        <tr><td>{{ label }}</td><td>{{ count }}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}

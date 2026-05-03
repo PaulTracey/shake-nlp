@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Search | {{ work.title }}{% endblock %}
+
+{% block content %}
+<section class="section">
+  <p class="eyebrow">{{ work.title }}</p>
+  <h1>Search</h1>
+  <p class="lede">Find sentences that contain a word or phrase.</p>
+
+  <form class="search-form" method="get">
+    <input name="q" type="search" placeholder="Try grief, Denmark, Hamlet..." value="{{ query }}">
+    <button type="submit">Search</button>
+  </form>
+
+  {% if query %}
+    <h2>{{ results|length }} result{{ '' if results|length == 1 else 's' }} for "{{ query }}"</h2>
+    <div class="result-list">
+      {% for sentence in results %}
+        <article class="card">
+          <p>{{ sentence }}</p>
+        </article>
+      {% else %}
+        <p>No matches found.</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+</section>
+{% endblock %}

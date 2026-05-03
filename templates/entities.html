@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Named Entities | {{ work.title }}{% endblock %}
+
+{% block content %}
+<section class="section">
+  <p class="eyebrow">{{ work.title }}</p>
+  <h1>Named Entities</h1>
+  <p class="lede">Characters, places, and other named terms detected by spaCy.</p>
+
+  {% if entities %}
+    <div class="entity-list">
+      {% for entity in entities %}
+        <article class="card">
+          <div class="entity-heading">
+            <strong>{{ entity.text }}</strong>
+            <span>{{ entity.label }}</span>
+          </div>
+          <p>{{ entity.sentence }}</p>
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No named entities were found. Install <code>en_core_web_sm</code> for richer results.</p>
+  {% endif %}
+</section>
+{% endblock %}

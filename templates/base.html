@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Shakespeare NLP Explorer{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="{{ url_for('index') }}">Shakespeare NLP Explorer</a>
+      <nav>
+        <a href="{{ url_for('work_detail', slug='hamlet') }}">Hamlet</a>
+        <a href="{{ url_for('frequency', slug='hamlet') }}">Frequency</a>
+        <a href="{{ url_for('entities', slug='hamlet') }}">Entities</a>
+        <a href="{{ url_for('pos_counts', slug='hamlet') }}">POS</a>
+        <a href="{{ url_for('search', slug='hamlet') }}">Search</a>
+      </nav>
+    </header>
+
+    <main class="page">
+      {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>

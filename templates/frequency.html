@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Word Frequency | {{ work.title }}{% endblock %}
+
+{% block content %}
+<section class="section">
+  <p class="eyebrow">{{ work.title }}</p>
+  <h1>Word Frequency</h1>
+  <p class="lede">A count of meaningful alphabetic tokens after stop words are removed.</p>
+
+  <form class="inline-form" method="get">
+    <label for="limit">Show top</label>
+    <input id="limit" name="limit" type="number" min="5" max="100" value="{{ limit }}">
+    <button type="submit">Update</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr><th>Word</th><th>Count</th></tr>
+    </thead>
+    <tbody>
+      {% for word, count in terms %}
+        <tr><td>{{ word }}</td><td>{{ count }}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}
