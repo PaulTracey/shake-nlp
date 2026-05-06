@@ -13,9 +13,14 @@ from nlp_utils import (
 app = Flask(__name__)
 
 
+@app.context_processor
+def inject_works():
+    return {"works": WORKS}
+
+
 @app.route("/")
 def index():
-    return render_template("index.html", works=WORKS)
+    return render_template("index.html")
 
 
 @app.route("/works/<slug>")

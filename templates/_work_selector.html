@@ -1,0 +1,21 @@
+<form class="work-selector" aria-label="Select Shakespeare work">
+  <label for="work-select">Selected work</label>
+  <select id="work-select" name="work" onchange="if (this.value) window.location.href = this.value">
+    {% for slug, item in works.items() %}
+      {% if request.endpoint == "frequency" %}
+        {% set target_url = url_for("frequency", slug=slug) %}
+      {% elif request.endpoint == "entities" %}
+        {% set target_url = url_for("entities", slug=slug) %}
+      {% elif request.endpoint == "pos_counts" %}
+        {% set target_url = url_for("pos_counts", slug=slug) %}
+      {% elif request.endpoint == "search" %}
+        {% set target_url = url_for("search", slug=slug) %}
+      {% else %}
+        {% set target_url = url_for("work_detail", slug=slug) %}
+      {% endif %}
+      <option value="{{ target_url }}" {{ "selected" if slug == work.slug else "" }}>
+        {{ item.title }}
+      </option>
+    {% endfor %}
+  </select>
+</form>

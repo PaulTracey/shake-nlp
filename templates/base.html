@@ -7,19 +7,25 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
   </head>
   <body>
-    <header class="site-header">
-      <a class="brand" href="{{ url_for('index') }}">Shakespeare NLP Explorer</a>
-      <nav>
-        <a href="{{ url_for('work_detail', slug='hamlet') }}">Hamlet</a>
-        <a href="{{ url_for('frequency', slug='hamlet') }}">Frequency</a>
-        <a href="{{ url_for('entities', slug='hamlet') }}">Entities</a>
-        <a href="{{ url_for('pos_counts', slug='hamlet') }}">POS</a>
-        <a href="{{ url_for('search', slug='hamlet') }}">Search</a>
-      </nav>
-    </header>
+    <div class="app-shell">
+      <aside class="side-nav" aria-label="Primary navigation">
+        <a class="brand" href="{{ url_for('index') }}">
+          <span class="brand-mark">SN</span>
+          <span>
+            <strong>Study Notes</strong>
+            <small>Portfolio lab</small>
+          </span>
+        </a>
 
-    <main class="page">
-      {% block content %}{% endblock %}
-    </main>
+        <nav>
+          <a class="{{ 'active' if request.endpoint == 'index' else '' }}" href="{{ url_for('index') }}">Home</a>
+          <a class="{{ 'active' if request.endpoint != 'index' else '' }}" href="{{ url_for('work_detail', slug='hamlet') }}">Shakespeare NLP</a>
+        </nav>
+      </aside>
+
+      <main class="page">
+        {% block content %}{% endblock %}
+      </main>
+    </div>
   </body>
 </html>

@@ -8,8 +8,18 @@
   <h1>Search</h1>
   <p class="lede">Find sentences that contain a word or phrase.</p>
 
+  {% include "_work_selector.html" %}
+
+  <div class="tool-links" aria-label="Project tools">
+    <a href="{{ url_for('work_detail', slug=work.slug) }}">Overview</a>
+    <a href="{{ url_for('frequency', slug=work.slug) }}">Word Frequency</a>
+    <a href="{{ url_for('entities', slug=work.slug) }}">Named Entities</a>
+    <a href="{{ url_for('pos_counts', slug=work.slug) }}">POS Counts</a>
+    <a class="active" href="{{ url_for('search', slug=work.slug) }}">Search</a>
+  </div>
+
   <form class="search-form" method="get">
-    <input name="q" type="search" placeholder="Try grief, Denmark, Hamlet..." value="{{ query }}">
+    <input name="q" type="search" placeholder="Try grief, dagger, kingdom..." value="{{ query }}">
     <button type="submit">Search</button>
   </form>
 

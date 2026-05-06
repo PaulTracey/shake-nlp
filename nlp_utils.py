@@ -16,9 +16,18 @@ WORKS = {
         "author": "William Shakespeare",
         "year": "c. 1600",
         "description": "A tragedy of grief, revenge, uncertainty, and political decay.",
-        "source": "Public-domain excerpt for portfolio exploration.",
-        "text_path": DATA_DIR / "hamlet.txt",
-    }
+        "source": "Cleaned reading copy derived from a public-domain edition.",
+        "text_path": DATA_DIR / "hamlet_play.txt",
+    },
+    "macbeth": {
+        "slug": "macbeth",
+        "title": "Macbeth",
+        "author": "William Shakespeare",
+        "year": "c. 1606",
+        "description": "A tragedy of ambition, prophecy, violence, and guilt.",
+        "source": "Cleaned public-domain full text prepared for portfolio exploration.",
+        "text_path": DATA_DIR / "macbeth_play.txt",
+    },
 }
 
 
@@ -29,11 +38,11 @@ def load_nlp():
         nlp = spacy.blank("en")
         nlp.add_pipe("sentencizer")
         ruler = nlp.add_pipe("entity_ruler")
-        add_hamlet_entities(ruler)
+        add_shakespeare_entities(ruler)
         return nlp
 
 
-def add_hamlet_entities(ruler: EntityRuler):
+def add_shakespeare_entities(ruler: EntityRuler):
     names = [
         "Hamlet",
         "Claudius",
@@ -44,6 +53,20 @@ def add_hamlet_entities(ruler: EntityRuler):
         "Horatio",
         "Denmark",
         "Elsinore",
+        "Macbeth",
+        "Lady Macbeth",
+        "Duncan",
+        "Malcolm",
+        "Donalbain",
+        "Banquo",
+        "Macduff",
+        "Lennox",
+        "Seyton",
+        "Cawdor",
+        "Glamis",
+        "Forres",
+        "Inverness",
+        "Dunsinane",
         "King",
         "Queen",
     ]

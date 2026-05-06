@@ -2,7 +2,7 @@
 
 A beginner-friendly Flask and spaCy portfolio project for exploring Shakespeare with natural language processing.
 
-The first included work is a public-domain excerpt from *Hamlet*. The app includes routes for:
+The included works are cleaned public-domain Shakespeare texts. The app includes routes for:
 
 - Word frequency
 - Named entities
@@ -37,9 +37,11 @@ The start command belongs in Render's dashboard, not in `requirements.txt`.
 ## Project Structure
 
 ```text
-app.py                 Flask routes
-nlp_utils.py           spaCy loading and analysis helpers
-data/hamlet.txt        Starter text
-templates/             Jinja templates
-static/css/styles.css  Site styles
+app.py                  Flask routes
+nlp_utils.py            spaCy loading and analysis helpers
+data/hamlet.txt         Original public-domain source text
+data/hamlet_play.txt    Clean reading copy used by the app
+data/macbeth_play.txt   Clean Macbeth text used by the app
+templates/              Jinja templates
+static/css/styles.css   Site styles
 ```

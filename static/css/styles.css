@@ -7,6 +7,7 @@
   --accent: #8b2f2f;
   --accent-dark: #642222;
   --gold: #c89a3a;
+  --nav: #f0ebe2;
 }
 
 * {
@@ -25,31 +26,76 @@ a {
   color: var(--accent);
 }
 
-.site-header {
+.app-shell {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.side-nav {
+  position: sticky;
+  top: 0;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1rem clamp(1rem, 4vw, 3rem);
-  border-bottom: 1px solid var(--line);
-  background: var(--panel);
+  flex-direction: column;
+  gap: 2rem;
+  height: 100vh;
+  padding: 1.25rem;
+  border-right: 1px solid var(--line);
+  background: var(--nav);
 }
 
 .brand {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
   color: var(--ink);
-  font-weight: 700;
   text-decoration: none;
+}
+
+.brand-mark {
+  display: grid;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border-radius: 8px;
+  color: #fff;
+  background: var(--accent);
+  font: 700 0.9rem Arial, sans-serif;
+}
+
+.brand strong,
+.brand small {
+  display: block;
+}
+
+.brand strong {
+  line-height: 1.1;
+}
+
+.brand small {
+  color: var(--muted);
+  font: 0.85rem Arial, sans-serif;
 }
 
 nav {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.85rem;
-  font-size: 0.95rem;
+  flex-direction: column;
+  gap: 0.35rem;
+  font: 700 0.95rem Arial, sans-serif;
 }
 
 nav a {
+  border-radius: 8px;
+  padding: 0.7rem 0.75rem;
+  color: var(--ink);
   text-decoration: none;
+}
+
+nav a:hover,
+nav a.active {
+  color: var(--accent-dark);
+  background: rgba(255, 255, 255, 0.7);
 }
 
 .page {
@@ -98,21 +144,42 @@ nav a {
   margin-top: 0;
 }
 
-.work-grid {
+.section-heading {
+  margin-bottom: 1.25rem;
+}
+
+.section-heading h2 {
+  margin-bottom: 0;
+}
+
+.project-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1rem;
 }
 
-.card {
+.card,
+.project-card {
   padding: 1.25rem;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--panel);
 }
 
-.card h3 {
+.card h3,
+.project-card h3 {
   margin-top: 0;
+}
+
+.project-card {
+  max-width: 720px;
+}
+
+.split-section {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.45fr) minmax(280px, 0.55fr);
+  gap: 2rem;
+  border-top: 1px solid var(--line);
 }
 
 dl {
@@ -158,13 +225,67 @@ button:hover {
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .tool-links a {
-  border-bottom: 2px solid var(--gold);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.55rem 0.75rem;
   color: var(--ink);
-  font-weight: 700;
+  background: var(--panel);
+  font: 700 0.9rem Arial, sans-serif;
   text-decoration: none;
+}
+
+.tool-links a:hover,
+.tool-links a.active {
+  border-color: var(--gold);
+  background: #fff8e8;
+}
+
+.project-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin: 1.25rem 0 0;
+}
+
+.project-meta span {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.25rem 0.65rem;
+  color: var(--muted);
+  background: var(--panel);
+  font: 700 0.78rem Arial, sans-serif;
+}
+
+.work-selector {
+  display: grid;
+  gap: 0.4rem;
+  width: min(100%, 420px);
+  margin: 1.5rem 0 0;
+}
+
+.work-selector label {
+  color: var(--muted);
+  font: 700 0.78rem Arial, sans-serif;
+  text-transform: uppercase;
+}
+
+.work-selector select {
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.65rem 2.4rem 0.65rem 0.8rem;
+  color: var(--ink);
+  background: var(--panel);
+  font: 700 1rem Arial, sans-serif;
+}
+
+.work-selector select:focus {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
 }
 
 .text-sample {
@@ -241,13 +362,28 @@ th {
 }
 
 @media (max-width: 720px) {
-  .site-header {
-    align-items: flex-start;
-    flex-direction: column;
+  .app-shell {
+    display: block;
+  }
+
+  .side-nav {
+    position: static;
+    height: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  nav {
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 
   .hero h1,
   .section h1 {
     font-size: 2.4rem;
+  }
+
+  .split-section {
+    grid-template-columns: 1fr;
   }
 }

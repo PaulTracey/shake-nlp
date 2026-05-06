@@ -5,10 +5,18 @@
 {% block content %}
 <section class="section">
   <p class="eyebrow">{{ work.author }} · {{ work.year }}</p>
-  <h1>{{ work.title }}</h1>
+  <h1>Shakespeare NLP Explorer</h1>
   <p class="lede">{{ work.description }}</p>
 
-  <div class="tool-links">
+  {% include "_work_selector.html" %}
+
+  <div class="project-meta">
+    <span>{{ work.title }}</span>
+    <span>{{ work.source }}</span>
+  </div>
+
+  <div class="tool-links" aria-label="Project tools">
+    <a class="active" href="{{ url_for('work_detail', slug=work.slug) }}">Overview</a>
     <a href="{{ url_for('frequency', slug=work.slug) }}">Word Frequency</a>
     <a href="{{ url_for('entities', slug=work.slug) }}">Named Entities</a>
     <a href="{{ url_for('pos_counts', slug=work.slug) }}">POS Counts</a>
@@ -17,7 +25,7 @@
 </section>
 
 <section class="section">
-  <h2>Text Sample</h2>
+  <h2>Reading Text</h2>
   <pre class="text-sample">{{ work.text }}</pre>
 </section>
 {% endblock %}

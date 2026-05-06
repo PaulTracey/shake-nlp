@@ -8,6 +8,16 @@
   <h1>Part-of-Speech Counts</h1>
   <p class="lede">A compact look at grammatical categories found in the text.</p>
 
+  {% include "_work_selector.html" %}
+
+  <div class="tool-links" aria-label="Project tools">
+    <a href="{{ url_for('work_detail', slug=work.slug) }}">Overview</a>
+    <a href="{{ url_for('frequency', slug=work.slug) }}">Word Frequency</a>
+    <a href="{{ url_for('entities', slug=work.slug) }}">Named Entities</a>
+    <a class="active" href="{{ url_for('pos_counts', slug=work.slug) }}">POS Counts</a>
+    <a href="{{ url_for('search', slug=work.slug) }}">Search</a>
+  </div>
+
   <table>
     <thead>
       <tr><th>Part of Speech</th><th>Count</th></tr>

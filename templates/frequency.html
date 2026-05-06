@@ -8,6 +8,16 @@
   <h1>Word Frequency</h1>
   <p class="lede">A count of meaningful alphabetic tokens after stop words are removed.</p>
 
+  {% include "_work_selector.html" %}
+
+  <div class="tool-links" aria-label="Project tools">
+    <a href="{{ url_for('work_detail', slug=work.slug) }}">Overview</a>
+    <a class="active" href="{{ url_for('frequency', slug=work.slug) }}">Word Frequency</a>
+    <a href="{{ url_for('entities', slug=work.slug) }}">Named Entities</a>
+    <a href="{{ url_for('pos_counts', slug=work.slug) }}">POS Counts</a>
+    <a href="{{ url_for('search', slug=work.slug) }}">Search</a>
+  </div>
+
   <form class="inline-form" method="get">
     <label for="limit">Show top</label>
     <input id="limit" name="limit" type="number" min="5" max="100" value="{{ limit }}">
